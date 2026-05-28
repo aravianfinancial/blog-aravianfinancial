@@ -1,0 +1,46 @@
+title: "Aravian Financial Blog"
+description: "Mortgage insights, homebuying tips, and Texas real estate guidance from Kris Syevens, CEO & Mortgage Advisor at Aravian Financial LLC."
+url: "https://blog.aravianfinancial.com"
+baseurl: ""
+
+author:
+  name: "Kris Syevens"
+  title: "CEO & Mortgage Advisor"
+  nmls: "566937"
+  company: "Aravian Financial LLC"
+  company_nmls: "2691016"
+  email: "kris@aravianfinancial.com"
+  phone: "281-716-3215"
+
+main_site: "https://aravianfinancial.com"
+apply_url: "https://aravianfinancial.my1003app.com/566937/register"
+
+permalink: /blog/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Kris Syevens"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - .sass-cache

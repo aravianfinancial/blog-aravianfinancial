@@ -1,0 +1,104 @@
+---
+layout: default
+title: "Mortgage Blog"
+description: "Texas mortgage insights, homebuying tips, and real estate guidance from Kris Syevens at Aravian Financial."
+---
+
+<div class="blog-home">
+
+  <header class="blog-home-header">
+    <p class="blog-home-label">Aravian Financial &nbsp;&middot;&nbsp; Houston, TX</p>
+    <h1 class="blog-home-title">Mortgage Insights<br />for Texas Homebuyers.</h1>
+    <p class="blog-home-sub">Expert guidance on home loans, rates, and the Texas real estate market — written by Kris Syevens, CEO &amp; Mortgage Advisor, NMLS #566937.</p>
+  </header>
+
+  <!-- Category Filter -->
+  <div class="blog-categories">
+    <a href="/" class="cat-btn active">All Posts</a>
+    <a href="/category/homebuying" class="cat-btn">Homebuying</a>
+    <a href="/category/refinancing" class="cat-btn">Refinancing</a>
+    <a href="/category/loan-programs" class="cat-btn">Loan Programs</a>
+    <a href="/category/market-insights" class="cat-btn">Market Insights</a>
+    <a href="/category/investment" class="cat-btn">Investment</a>
+    <a href="/category/first-time-buyers" class="cat-btn">First-Time Buyers</a>
+  </div>
+
+  <!-- Featured Post -->
+  {% assign featured = site.posts.first %}
+  {% if featured %}
+  <a href="{{ featured.url | relative_url }}" class="featured-post">
+    <div class="featured-post-img">
+      <div class="featured-post-img-placeholder">
+        <span class="post-icon">🏠</span>
+      </div>
+      <span class="featured-badge">Featured</span>
+    </div>
+    <div class="featured-post-body">
+      {% if featured.category %}
+      <div class="post-category-tag">{{ featured.category }}</div>
+      {% endif %}
+      <h2 class="featured-post-title">{{ featured.title }}</h2>
+      <p class="featured-post-excerpt">{{ featured.excerpt | strip_html | truncate: 180 }}</p>
+      <div class="post-meta">
+        <span>{{ featured.date | date: "%B %-d, %Y" }}</span>
+        <span>&middot;</span>
+        <span>{{ featured.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+      </div>
+      <span class="read-more">Read Article &rarr;</span>
+    </div>
+  </a>
+  {% endif %}
+
+  <!-- Post Grid -->
+  {% assign posts = site.posts | offset: 1 %}
+  {% if posts.size > 0 %}
+  <div class="post-grid">
+    {% for post in posts %}
+    <a href="{{ post.url | relative_url }}" class="post-card">
+      <div class="post-card-img">
+        <div class="post-icon">🏠</div>
+        {% if post.category %}
+        <span class="post-card-category">{{ post.category }}</span>
+        {% endif %}
+      </div>
+      <div class="post-card-body">
+        <h2 class="post-card-title">{{ post.title }}</h2>
+        <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 130 }}</p>
+        <div class="post-card-footer">
+          <span class="post-card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <span class="post-card-read">Read &rarr;</span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Pagination -->
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
+    {% endif %}
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+      <span class="current">{{ page }}</span>
+      {% else %}
+      <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="cta-band">
+  <h2 class="cta-band-title">Ready to take the next step?</h2>
+  <div class="cta-band-actions">
+    <a href="{{ site.main_site }}/contact.html" class="btn-dark">Talk to Kris</a>
+    <a href="{{ site.main_site }}/programs.html" class="btn-outline">View Loan Programs</a>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+---
+layout: default
+---
+
+<article class="post-wrap">
+
+  <!-- POST HEADER -->
+  <header class="post-header">
+    <div class="post-header-inner">
+      <div class="post-meta-top">
+        {% if page.category %}
+        <span class="post-category">{{ page.category }}</span>
+        {% endif %}
+        <span class="post-date">{{ page.date | date: "%B %-d, %Y" }}</span>
+        <span class="post-read-time">{{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+      </div>
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.subtitle %}
+      <p class="post-subtitle">{{ page.subtitle }}</p>
+      {% endif %}
+      <div class="post-author">
+        <div class="post-author-info">
+          <span class="post-author-name">{{ page.author | default: site.author.name }}</span>
+          <span class="post-author-title">{{ site.author.title }} &middot; NMLS #{{ site.author.nmls }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- POST BODY -->
+  <div class="post-body-wrap">
+    <div class="post-content">
+      {{ content }}
+
+      <!-- AUTHOR BIO -->
+      <div class="post-author-bio">
+        <div class="bio-label">About the Author</div>
+        <div class="bio-name">{{ site.author.name }}</div>
+        <div class="bio-title">{{ site.author.title }} &middot; {{ site.author.company }} &middot; NMLS #{{ site.author.nmls }}</div>
+        <p class="bio-text">With over 17 years in financial services, Kris Syevens founded Aravian Financial to give Texas borrowers a better mortgage experience. Based in Houston, TX and licensed statewide. Every client works directly with Kris from the first conversation through closing day.</p>
+        <div class="bio-links">
+          <a href="tel:+12817163215">281-716-3215</a>
+          <a href="mailto:kris@aravianfinancial.com">kris@aravianfinancial.com</a>
+          <a href="{{ site.main_site }}/about.html">Full Bio &rarr;</a>
+        </div>
+      </div>
+
+      <!-- LEGAL DISCLAIMER -->
+      <div class="post-disclaimer">
+        <p>This article is for informational purposes only and does not constitute financial, legal, or mortgage advice. Loan programs, rates, and eligibility requirements are subject to change. Not all borrowers will qualify. Contact Aravian Financial LLC directly to discuss your specific situation. Aravian Financial LLC | Company NMLS #{{ site.author.company_nmls }} | Equal Housing Lender.</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="post-sidebar">
+      <div class="sidebar-cta-card">
+        <div class="sidebar-cta-eyebrow">Ready to Get Started?</div>
+        <div class="sidebar-cta-title">Talk to Kris About Your Options.</div>
+        <p class="sidebar-cta-sub">No obligation. Personal response within 1 business day.</p>
+        <a href="{{ site.main_site }}/contact.html" class="sidebar-btn-primary">Contact Kris</a>
+        <a href="{{ site.apply_url }}" class="sidebar-btn-ghost" target="_blank" rel="noopener">Begin Application</a>
+        <div class="sidebar-trust">
+          <span>NMLS #{{ site.author.nmls }}</span>
+          <span>&middot;</span>
+          <span>Company NMLS #{{ site.author.company_nmls }}</span>
+          <span>&middot;</span>
+          <span>Licensed in Texas</span>
+        </div>
+      </div>
+
+      {% if page.related_programs %}
+      <div class="sidebar-programs">
+        <div class="sidebar-programs-title">Related Loan Programs</div>
+        {% for program in page.related_programs %}
+        <a href="{{ site.main_site }}/{{ program.url }}" class="sidebar-program-link">
+          <span class="sidebar-program-name">{{ program.name }}</span>
+          <span>&rarr;</span>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="sidebar-recent">
+        <div class="sidebar-recent-title">Recent Posts</div>
+        {% for post in site.posts limit:5 %}
+        {% unless post.url == page.url %}
+        <a href="{{ post.url | relative_url }}" class="sidebar-recent-link">
+          <span class="sidebar-recent-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <span class="sidebar-recent-title-text">{{ post.title }}</span>
+        </a>
+        {% endunless %}
+        {% endfor %}
+      </div>
+    </aside>
+  </div>
+
+</article>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2 class="cta-band-title">Have questions about your mortgage?</h2>
+  <div class="cta-band-actions">
+    <a href="{{ site.main_site }}/contact.html" class="btn-dark">Talk to Kris</a>
+    <a href="{{ site.main_site }}/programs.html" class="btn-outline">View Loan Programs</a>
+  </div>
+</div>
